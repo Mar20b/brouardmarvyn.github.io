@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Développeur</title>
+  <title>Portfolio - Brouard Marvyn</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -31,26 +31,64 @@
 
   <section id="projects">
     <h2>Mes projets</h2>
+
+    <!-- Les projets -->
     <div class="projects-grid">
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Projet 1">
-        <h3>Nom du projet 1</h3>
-        <p>Petit résumé du projet. Développé avec Unity / Godot / C++ / etc.</p>
-        <a href="#" target="_blank">Voir le projet</a>
-      </div>
+      <div class="canvas-wrapper">
+        <a href="#" class="canvas">
+          <div class="canvas_border">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#FD8964"/>
+                  <stop offset="100%" stop-color="#993F17"/>
+                </linearGradient>
+              </defs>
+              <rect class="rect-gradient" fill="none" stroke="url(#grad-1)" stroke-linecap="square" stroke-width="4" width="100%" height="100%"></rect>
+            </svg>
+          </div>
 
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Projet 2">
-        <h3>Nom du projet 2</h3>
-        <p>Description brève du projet, ton rôle, les outils utilisés.</p>
-        <a href="#" target="_blank">Voir le projet</a>
-      </div>
+          <div class="canvas_img-wrapper">
+            <!-- deux variantes : light / dark -->
+            <img class="canvas_img theme-logo"
+                 src="img/unreal_n.png"
+                 alt="Projet 1"
+                 data-src-light="img/unreal_n.png"
+                 data-src-dark="img/unreal_b.png">
+          </div>
 
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x200" alt="Projet 3">
-        <h3>Nom du projet 3</h3>
-        <p>Quelques détails sur ton projet ou un lien vers ton GitHub.</p>
-        <a href="#" target="_blank">Voir le projet</a>
+          <div class="canvas_copy canvas_copy--left">
+            <span class="canvas_copy_subtitle">Prototype</span>
+            <strong class="canvas_copy_title">Nom du projet 1</strong>
+            <strong class="canvas_copy_title">Gameplay</strong>
+            <span class="canvas_copy_details">Unity • C#</span>
+          </div>
+        </a>
+
+        <a href="#" class="canvas">
+          <div class="canvas_border">
+            <svg viewBox="0 0 400 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#6DD3FF"/>
+                  <stop offset="100%" stop-color="#2C7BE5"/>
+                </linearGradient>
+              </defs>
+              <rect class="rect-gradient" fill="none" stroke="url(#grad-2)" stroke-linecap="square" stroke-width="4" width="100%" height="100%"></rect>
+            </svg>
+          </div>
+
+          <div class="canvas_img-wrapper">
+            <img class="canvas_img" src="https://via.placeholder.com/300x200" alt="Projet 2">
+          </div>
+
+          <div class="canvas_copy">
+            <span class="canvas_copy_subtitle">Outils</span>
+            <strong class="canvas_copy_title">Nom du projet 2</strong>
+            <strong class="canvas_copy_title">Prototype</strong>
+            <span class="canvas_copy_details">Godot • GDScript</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -58,11 +96,11 @@
   <section id="contact">
     <h2>Contact</h2>
     <p>Tu veux échanger ? Contacte-moi :</p>
-    <ul>
-      <li><a href="mailto:marvyn.30042006@gmail.com">Mon email</a></li>
-      <li>GitHub : <a href="https://github.com/Mar20b" target="_blank">Mon Github</a></li>
-      <li>LinkedIn : <a href="https://linkedin.com/in/marvyn-brouard-039897347" target="_blank">Mon Linkedin</a></li>
-      <li>Discord : <a href="https://discord.com/users/628260855271784489" target="_blank">Mon Discord</a></li>
+    <ul class="contact-list">
+      <li><button class="contact-btn" onclick="location.href='mailto:marvyn.30042006@gmail.com'">Mon email</button></li>
+      <li><button class="contact-btn" onclick="window.open('https://github.com/Mar20b', '_blank')">Mon Github</button></li>
+      <li><button class="contact-btn" onclick="window.open('https://linkedin.com/in/marvyn-brouard-039897347', '_blank')">Mon Linkedin</button></li>
+      <li><button class="contact-btn" onclick="window.open('https://discord.com/users/628260855271784489', '_blank')">Mon Discord</button></li>
     </ul>
   </section>
 

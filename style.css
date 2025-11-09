@@ -33,19 +33,19 @@ body {
 
 /* 🌓 Mode forcé (appliqué via JS) */
 body.light-theme {
-  --bg-color: #ffffff;
+  --bg-color: #f3f0eb;
   --text-color: #1c1c1c;
-  --card-bg: #f3f3f3;
+  --card-bg: #f1e1e1;
   --accent: #0077ff;
-  --nav-bg: #e6e6e6;
+  --nav-bg: #e7dfdc;
 }
 
 body.dark-theme {
-  --bg-color: #0f0f0f;
+  --bg-color: #201515;
   --text-color: #f4f4f4;
-  --card-bg: #1a1a1a;
+  --card-bg: #352a2a;
   --accent: #61dafb;
-  --nav-bg: #181818;
+  --nav-bg: #301f1f;
 }
 
 /* 🧱 Styles généraux */
@@ -226,4 +226,266 @@ html {
   opacity: 0;
   transform: translate(-50%, 50px);
   pointer-events: none;
+}
+
+/* Styles pour la liste de contact en boutons */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.contact-btn {
+  width: min(320px, 90%);
+  padding: 0.65rem 1rem;
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.contact-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+  opacity: 0.98;
+}
+
+.contact-btn:active {
+  transform: translateY(-1px);
+}
+
+/* Assure contraste en mode sombre/claire (utilise les variables de thème) */
+body.dark-theme .contact-btn {
+  color: #000;
+}
+body.light-theme .contact-btn {
+  color: #000;
+}
+
+/* =========================
+   project cards
+   ========================= */
+@import url('https://fonts.googleapis.com/css?family=Lato:300,900');
+
+.canvas-wrapper {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+/* single card */
+.canvas {
+  position: relative;
+  display: block;
+  width: 340px;
+  height: 340px;
+  padding: 18px;
+  color: inherit;
+  text-decoration: none;
+  overflow: visible;
+  transform-origin: center;
+  transition: transform 0.6s cubic-bezier(.2,.9,.3,1);
+}
+
+/* decorative SVG border */
+.canvas_border {
+  position: absolute;
+  top: 28px;
+  left: -28px;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+.canvas_border svg { width: 100%; height: 100%; display: block; }
+
+/* stroke anim */
+.rect-gradient {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+/* image area */
+.canvas_img-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: rotate(-8deg) skew(-6deg);
+  overflow: hidden;
+  background: var(--card-bg);
+  border-radius: 8px;
+  z-index: 1;
+  transition: transform 0.45s ease;
+}
+
+.canvas_img {
+  max-width: 260px;
+  max-height: 260px;
+  object-fit: cover;
+  transform: scale3d(.94,.94,1);
+  transition: transform 0.45s ease, opacity 0.45s ease;
+  opacity: 0.95;
+}
+
+/* text block */
+.canvas_copy {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  z-index: 3;
+  color: var(--text-color);
+  text-transform: uppercase;
+  pointer-events: none;
+  width: calc(100% - 32px);
+}
+.canvas_copy--left { left: 18px; }
+
+
+.canvas_copy_subtitle {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-bottom: 6px;
+  transform: translateX(-40px);
+  transition: transform 0.6s cubic-bezier(.2,.9,.3,1), opacity 0.45s;
+  opacity: 0;
+}
+.canvas_copy_title {
+  display: block;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 1;
+  transform: translateX(-40px);
+  transition: transform 0.6s cubic-bezier(.2,.9,.3,1), opacity 0.45s;
+  opacity: 0;
+}
+.canvas_copy_details {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: transform 0.6s cubic-bezier(.2,.9,.3,1), opacity 0.45s;
+}
+
+/* hover effects */
+.canvas:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+.canvas:hover .canvas_img-wrapper {
+  transform: rotate(-10deg) skew(-8deg) scale(0.98);
+}
+.canvas:hover .canvas_img {
+  transform: scale3d(1,1,1);
+}
+.canvas:hover .rect-gradient {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* reveal text on hover */
+.canvas:hover .canvas_copy_subtitle,
+.canvas:hover .canvas_copy_title,
+.canvas:hover .canvas_copy_details {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* small screens */
+@media (max-width: 760px) {
+  .canvas { width: calc(100% - 40px); height: 340px; }
+  .canvas-wrapper { gap: 18px; }
+}
+
+/* stroke animations */
+@keyframes draw-line {
+  from { stroke-dashoffset: 2000; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes erase-line {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: 2000; }
+}
+
+.canvas-wrapper {
+  display: flex;
+  gap: 5rem; /* augmenté depuis 28px */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0; /* un peu plus de padding vertical */
+}
+
+/* thème : overlay en bas — valeurs par préférence système */
+.canvas::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  z-index: 2;
+  pointer-events: none;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  transition: background 0.25s ease, backdrop-filter 0.25s ease, opacity 0.25s, transform 0.2s;
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* préférence système */
+@media (prefers-color-scheme: dark) {
+  .canvas:hover::before {
+    background: rgba(0, 0, 0, 0.47);
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-color-scheme: light) {
+  .canvas:hover::before {
+    background: rgba(255, 255, 255, 0.507);
+    backdrop-filter: blur(5px);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* override si l'utilisateur a forcé un thème via JS */
+body.dark-theme .canvas:hover::before {
+  background: rgba(0, 0, 0, 0.47);
+  backdrop-filter: blur(5px);
+  opacity: 1;
+  transform: translateY(0);
+}
+body.light-theme .canvas:hover::before {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(5px);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* retire le fond/backdrop sur .canvas:hover (on utilise maintenant ::before) */
+.canvas:hover {
+  transform: translateY(-10px) scale(1.02);
+  /* plus de background ici (géré par ::before) */
+  /* padding / border-radius non requis ici */
 }
